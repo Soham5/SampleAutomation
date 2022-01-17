@@ -1,7 +1,10 @@
 package Tests;
 
+import PageFunctions.HomePageFunctions;
 import UserDefinedBinaries.DriverSetup;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -12,19 +15,16 @@ public class SampleTest {
     @BeforeTest
     public void setup() {
         driver= DriverSetup.driverInstantiate("chrome");
-
     }
 
     @Test
     public void googleSearch() {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        driver.quit();
+        HomePageFunctions.enterText(driver,"Selenium");
+        Assert.assertEquals(HomePageFunctions.getResultText(driver),"Selenium","Results didn't match");
     }
 
-
-    public void tearDown(){}
+    @AfterTest
+    public void tearDown() {
+        driver.quit();
+    }
 }
