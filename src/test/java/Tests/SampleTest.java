@@ -8,13 +8,15 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 public class SampleTest {
 
     static WebDriver driver;
 
     @BeforeTest
-    public void setup() {
-        driver= DriverSetup.driverInstantiate("chrome");
+    public void setup() throws MalformedURLException {
+        driver= DriverSetup.driverInstantiate("chrome1");
     }
 
     @Test
